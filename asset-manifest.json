@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/KuzkinaOlga/goit-react-hw-02-phonebook.git/static/css/main.0253f8e0.css",
-    "main.js": "/KuzkinaOlga/goit-react-hw-02-phonebook.git/static/js/main.e6763453.js",
+    "main.js": "/KuzkinaOlga/goit-react-hw-02-phonebook.git/static/js/main.4d45ae38.js",
     "index.html": "/KuzkinaOlga/goit-react-hw-02-phonebook.git/index.html",
     "main.0253f8e0.css.map": "/KuzkinaOlga/goit-react-hw-02-phonebook.git/static/css/main.0253f8e0.css.map",
-    "main.e6763453.js.map": "/KuzkinaOlga/goit-react-hw-02-phonebook.git/static/js/main.e6763453.js.map"
+    "main.4d45ae38.js.map": "/KuzkinaOlga/goit-react-hw-02-phonebook.git/static/js/main.4d45ae38.js.map"
   },
   "entrypoints": [
     "static/css/main.0253f8e0.css",
-    "static/js/main.e6763453.js"
+    "static/js/main.4d45ae38.js"
   ]
 }
