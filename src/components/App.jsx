@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container } from './Container/Container';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
@@ -15,11 +16,6 @@ class App extends Component {
     filter: '',
   };
 
-  // formSubmitHendler = dataForm => {
-  //   this.setState(prevState => ({
-  //     contacts: [...prevState.contacts, dataForm],
-  //   }));
-  // };
   visibleContacts = () => {
     const { contacts, filter } = this.state;
 
