@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { Container } from './Container/Container';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
@@ -39,13 +39,12 @@ class App extends Component {
       if (
         contacts.some(
           contact => contact.name.toLowerCase() === name.toLowerCase()
-        )
+        ) ||
+        contacts.some(contact => contact.number === number)
       ) {
-        return alert(`this name is already in contacts`);
+        return alert(`this name or number is already in contacts`);
       }
-      if (contacts.some(contact => contact.number === number)) {
-        return alert(`this number is already in contacts`);
-      }
+
       return { contacts: [contact, ...contacts] };
     });
   };
@@ -71,4 +70,14 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+};
 export default App;

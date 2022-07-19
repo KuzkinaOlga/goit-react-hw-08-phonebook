@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ContactList = ({ contacts, delite }) => (
   <div>
@@ -14,5 +15,16 @@ const ContactList = ({ contacts, delite }) => (
     </ul>
   </div>
 );
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  delite: PropTypes.func.isRequired,
+};
 
 export default ContactList;
