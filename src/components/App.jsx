@@ -61,10 +61,14 @@ class App extends Component {
 
           <h2>Contacts</h2>
           <Filter value={this.filter} onChange={this.formSubmitFilter} />
-          <ContactList
-            contacts={this.visibleContacts()}
-            delite={this.deliteContact}
-          />
+          {this.state.contacts.length ? (
+            <ContactList
+              contacts={this.visibleContacts()}
+              delite={this.deliteContact}
+            />
+          ) : (
+            <h2>Your phonebook is empty !!!</h2>
+          )}
         </Container>
       </>
     );
