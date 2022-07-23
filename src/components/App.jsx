@@ -30,17 +30,17 @@ class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
-  newContact = ({ name, number }) => {
-    const contact = {
-      name,
-      number,
-    };
+
+  newContact = contact => {
     this.setState(({ contacts }) => {
+      const { name, number } = contact;
+
       if (
         contacts.some(
-          contact => contact.name.toLowerCase() === name.toLowerCase()
-        ) ||
-        contacts.some(contact => contact.number === number)
+          contact =>
+            contact.name.toLowerCase() === name.toLowerCase() ||
+            contact.number === number
+        )
       ) {
         return alert(`this name or number is already in contacts`);
       }
@@ -57,7 +57,7 @@ class App extends Component {
       <>
         <Container>
           <h1>Phonebook</h1>
-          <ContactForm onSubmit={this.newContact} />
+          <ContactForm newContact={this.newContact} />
 
           <h2>Contacts</h2>
           <Filter value={this.filter} onChange={this.formSubmitFilter} />

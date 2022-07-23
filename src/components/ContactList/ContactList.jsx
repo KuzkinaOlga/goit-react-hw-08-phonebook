@@ -1,8 +1,10 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 
 const ContactList = ({ contacts, delite }) => (
   <div>
+    {console.log(contacts)}
     <ul>
       {contacts.map(({ id, name, number }) => (
         <li key={id}>
