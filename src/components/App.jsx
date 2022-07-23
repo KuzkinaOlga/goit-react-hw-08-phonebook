@@ -12,10 +12,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    //     this.setState(prevState=>{
-    // return {...prevState, filter: prevState.filter }
-    //     }
-    //     )
     const getStorage = JSON.parse(localStorage.getItem('contacts'));
 
     if (getStorage) {
