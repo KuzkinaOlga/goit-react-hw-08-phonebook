@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Filter = ({ value, onChange }) => (
   <label>
-    Find contact
+    Find contact!!
     <input type="text" value={value} onChange={onChange} />
   </label>
 );
