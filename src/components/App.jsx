@@ -60,13 +60,12 @@ const App = () => {
       <Container>
         <h1>Phonebook</h1>
         <ContactForm newContact={addContact} />
-
         <h2>Contacts</h2>
         <Filter value={filter} onChange={setFilterValue} />
         {contacts.length ? (
           <ContactList contacts={visibleContacts()} delite={deliteContact} />
         ) : (
-          <h2>Your phonebook is empty !!!</h2>
+          <h2>Your phonebook is empty...</h2>
         )}
       </Container>
     </>
