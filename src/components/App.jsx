@@ -4,6 +4,7 @@ import { Container } from './Container/Container';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import { nanoid } from 'nanoid';
 
 const initialContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -36,7 +37,12 @@ const App = () => {
     setContacts(prevState => prevState.filter(contact => contact.id !== id));
   };
 
-  const addContact = newContact => {
+  const addContact = ({ name, number }) => {
+    const newContact = {
+      id: nanoid(5),
+      name,
+      number,
+    };
     if (
       contacts.some(contact => {
         return (
