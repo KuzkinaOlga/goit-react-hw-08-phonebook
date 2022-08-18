@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/phonebookSlice';
+import { nanoid } from 'nanoid';
 
-const ContactForm = ({ newContact }) => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -19,9 +24,15 @@ const ContactForm = ({ newContact }) => {
     }
   };
 
+  const newContact = {
+    id: nanoid(5),
+    name,
+    number,
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
-    newContact({ name, number });
+    dispatch(addContact(newContact));
     reset();
   };
   const reset = () => {
@@ -59,14 +70,14 @@ const ContactForm = ({ newContact }) => {
     </form>
   );
 };
-ContactForm.protoTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-};
+// ContactForm.protoTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     })
+//   ),
+// };
 
 export default ContactForm;
