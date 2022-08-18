@@ -6,8 +6,8 @@ import { Container } from './Container/Container';
 import Filter from './Filter/Filter';
 
 const App = () => {
-  const addContact = useSelector(state => state.phonebook.contacts);
-  const filter = useSelector(state => state.phonebook.filter);
+  const addContact = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
 
   const visibleContacts = filter
     ? filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))

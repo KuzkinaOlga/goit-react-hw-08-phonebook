@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { phonebookSlice } from './phonebookSlice';
+import phonebookSlice from './phonebookSlice';
 
 const persistConfig = {
   key: 'phonebook',
@@ -19,10 +19,10 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, phonebookSlice.reducer);
+const persistedReducer = persistReducer(persistConfig, phonebookSlice);
 
 export const store = configureStore({
-  reducer: { phonebook: persistedReducer },
+  reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
