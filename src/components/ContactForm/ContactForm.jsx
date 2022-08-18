@@ -42,7 +42,7 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>name</label>
+      <label>Name</label>
       <input
         type="text"
         value={name}
@@ -54,7 +54,7 @@ const ContactForm = () => {
       />
 
       <label>
-        phone
+        Phone
         <input
           type="tel"
           value={number}
@@ -66,7 +66,7 @@ const ContactForm = () => {
         />
       </label>
       <br />
-      <button type="submit">add contact</button>
+      <button type="submit">Add contact</button>
     </form>
   );
 };
