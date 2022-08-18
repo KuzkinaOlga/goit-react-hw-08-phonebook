@@ -13,7 +13,7 @@ const initialContacts = {
 };
 
 export const phonebookSlice = createSlice({
-  name: 'contacts',
+  name: 'phonebook',
   initialContacts,
   reducers: {
     addContact: (state, action) => {

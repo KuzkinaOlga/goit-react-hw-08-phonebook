@@ -14,7 +14,7 @@ import storage from 'redux-persist/lib/storage';
 import { phonebookSlice } from './phonebookSlice';
 
 const persistConfig = {
-  key: 'contacts',
+  key: 'phonebook',
   version: 1,
   storage,
 };
