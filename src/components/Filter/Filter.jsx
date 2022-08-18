@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { searchContact } from 'redux/phonebookSlice';
 
-const Filter = ({ value }) => {
+const Filter = () => {
   const dispatch = useDispatch();
   const onChangeFiltr = event => dispatch(searchContact(event.target.value));
 
   return (
     <label>
       Please, find contact.
-      <input type="text" value={value} onChange={onChangeFiltr} />
+      <input type="text" onChange={onChangeFiltr} />
     </label>
   );
 };

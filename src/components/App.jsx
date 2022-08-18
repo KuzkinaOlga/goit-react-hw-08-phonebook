@@ -10,7 +10,9 @@ const App = () => {
   const filter = useSelector(state => state.filter);
 
   const visibleContacts = filter
-    ? filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))
+    ? addContact.filter(({ name }) =>
+        name.toLowerCase().includes(filter.toLowerCase())
+      )
     : addContact;
   return (
     <>
