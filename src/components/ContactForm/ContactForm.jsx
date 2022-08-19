@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/phonebookSlice';
 import { nanoid } from 'nanoid';
 
@@ -9,6 +9,7 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -32,6 +33,16 @@ const ContactForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    if (
+      contacts.some(contact => {
+        return (
+          contact.name.toLowerCase() === newContact.name.toLowerCase() ||
+          contact.number === newContact.number
+        );
+      })
+    ) {
+      return alert(`this name or number is already in contacts`);
+    }
     dispatch(addContact(newContact));
     reset();
   };
