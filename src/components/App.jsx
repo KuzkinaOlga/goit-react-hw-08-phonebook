@@ -1,7 +1,7 @@
 // import PropTypes from 'prop-types';
 
 import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
+import Contacts from './Contacts/Contacts';
 import { Container } from './Container/Container';
 import Filter from './Filter/Filter';
 
@@ -13,7 +13,7 @@ const App = () => {
         <ContactForm />
         <h2>Contacts</h2>
         <Filter />
-        <ContactList />
+        <Contacts />
       </Container>
     </>
   );

@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 // import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/phonebookSlice';
-import { nanoid } from 'nanoid';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { addContact } from 'redux/phonebookSlice';
+
+import {
+  useCreateContactMutation,
+  useFetchContactsQuery,
+} from 'redux/contactApi';
 
 const ContactForm = () => {
+  const { data } = useFetchContactsQuery();
+  const [createContact, { isLoading }] = useCreateContactMutation();
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
-  const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const [phone, setPhone] = useState('');
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -17,38 +21,31 @@ const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'number':
-        setNumber(value);
+      case 'phone':
+        setPhone(value);
         break;
       default:
         return;
     }
   };
 
-  const newContact = {
-    id: nanoid(5),
-    name,
-    number,
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault();
     if (
-      contacts.some(contact => {
-        return (
-          contact.name.toLowerCase() === newContact.name.toLowerCase() ||
-          contact.number === newContact.number
-        );
-      })
+      data.some(contact => contact.name.toLowerCase() === name.toLowerCase())
     ) {
-      return alert(`this name or number is already in contacts`);
+      reset();
+      return alert(`${name} is already in contacts`);
     }
-    dispatch(addContact(newContact));
-    reset();
+    if (name && phone) {
+      await createContact({ name: name, phone: phone }).unwrap();
+      reset();
+      toast.success('you added a new contact');
+    }
   };
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -68,8 +65,8 @@ const ContactForm = () => {
         phone
         <input
           type="tel"
-          value={number}
-          name="number"
+          value={phone}
+          name="phone"
           onChange={handleChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -77,7 +74,9 @@ const ContactForm = () => {
         />
       </label>
       <br />
-      <button type="submit">add contact</button>
+      <button type="submit" disabled={isLoading}>
+        add contact
+      </button>
     </form>
   );
 };

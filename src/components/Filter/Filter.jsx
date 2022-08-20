@@ -5,12 +5,12 @@ import { searchContact } from 'redux/phonebookSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const onChangeFiltr = event => dispatch(searchContact(event.target.value));
+  const onChangeFiltr = event =>
+    dispatch(searchContact(event.currentTarget.value));
 
   return (
     <label>
-      Please, find contact.
-      <input type="text" onChange={onChangeFiltr} />
+      Please, find contact: <input type="text" onChange={onChangeFiltr} />
     </label>
   );
 };
