@@ -1,27 +1,31 @@
 // import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { useFetchContactsQuery } from 'redux/contactApi';
+import { getFilter } from 'redux/phonebookSlice';
 import ContactListItem from './ContactListItem/ContactListItem';
 
-const ContactList = ({ contacts }) => {
-  // const dispatch = useDispatch();
+const ContactList = () => {
+  const { data: contacts = [] } = useFetchContactsQuery();
+  const filter = useSelector(getFilter);
 
-  // const addContact = useSelector(state => state.contacts);
-  // const filter = useSelector(state => state.filter);
-
-  // const contacts = addContact.filter(({ name }) =>
-  //   name.toLowerCase().includes(filter.toLowerCase())
-  // );
-
+  const visibleContacts = contacts.filter(({ name }) =>
+    name.toLowerCase().includes(filter.toLowerCase())
+  );
   return (
     <div>
       <ul>
-        {contacts.map(contact => (
-          <ContactListItem key={contact.id} {...contact} />
-        ))}
+        {visibleContacts.length > 0 ? (
+          visibleContacts.map(contact => (
+            <ContactListItem key={contact.id} {...contact} />
+          ))
+        ) : (
+          <h2>phonebook is empty!</h2>
+        )}
       </ul>
     </div>
   );
 };
-
+export default ContactList;
 // ContactList.propTypes = {
 //   contacts: PropTypes.arrayOf(
 //     PropTypes.shape({
@@ -32,5 +36,3 @@ const ContactList = ({ contacts }) => {
 //   ),
 //   delite: PropTypes.func.isRequired,
 // };
-
-export default ContactList;

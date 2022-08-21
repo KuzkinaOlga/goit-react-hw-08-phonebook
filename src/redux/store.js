@@ -9,18 +9,12 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import { contactApi } from './contactApi';
-
-// const persistConfig = {
-//   key: 'phonebook',
-//   version: 1,
-//   storage,
-// };
-
-// const persistedReducer = persistReducer(persistConfig, phonebookSlice);
+import { filterReducer } from './phonebookSlice';
 
 export const store = configureStore({
   reducer: {
     [contactApi.reducerPath]: contactApi.reducer,
+    filter: filterReducer,
   },
 
   middleware: getDefaultMiddleware => [
@@ -34,4 +28,3 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch);
-// export const persistor = persistStore(store);
