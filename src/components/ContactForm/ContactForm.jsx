@@ -10,7 +10,7 @@ import {
 } from 'redux/contactApi';
 
 const ContactForm = () => {
-  const { data } = useFetchContactsQuery();
+  const { data: contacts } = useFetchContactsQuery();
   const [createContact, { isLoading }] = useCreateContactMutation();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,7 +32,9 @@ const ContactForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (
-      data.some(contact => contact.name.toLowerCase() === name.toLowerCase())
+      contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
     ) {
       reset();
       return alert(`${name} is already in contacts`);

@@ -14,7 +14,7 @@ const ContactList = () => {
   return (
     <div>
       <ul>
-        {visibleContacts.length > 0 ? (
+        {contacts && visibleContacts.length > 0 ? (
           visibleContacts.map(contact => (
             <ContactListItem key={contact.id} {...contact} />
           ))
