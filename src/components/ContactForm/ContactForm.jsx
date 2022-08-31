@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast';
 import {
   useCreateContactMutation,
   useFetchContactsQuery,
-} from 'redux/contactApi';
+} from 'redux/phonebook/contactApi';
 
 const ContactForm = () => {
   const { data: contacts } = useFetchContactsQuery();
@@ -40,7 +40,7 @@ const ContactForm = () => {
       return alert(`${name} is already in contacts`);
     }
     if (name && phone) {
-      await createContact({ name: name, phone: phone }).unwrap();
+      await createContact({ name: name, number: phone }).unwrap();
       reset();
       toast.success('you added a new contact');
     }

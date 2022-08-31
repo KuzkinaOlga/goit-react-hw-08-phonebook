@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import {
+  persistStore,
+  // persistReducer,
   FLUSH,
   PAUSE,
   PERSIST,
@@ -8,13 +10,17 @@ import {
   REGISTER,
   REHYDRATE,
 } from 'redux-persist';
-import { contactApi } from './contactApi';
-import { filterReducer } from './phonebookSlice';
+import authSlice from './auth/authSlice';
+// import storage from 'redux-persist/lib/storage';
+import { contactApi } from './phonebook/contactApi';
+import { filterReducer } from './phonebook/phonebookSlice';
+// import persistReducer from 'redux-persist/es/persistReducer';
 
 export const store = configureStore({
   reducer: {
     [contactApi.reducerPath]: contactApi.reducer,
     filter: filterReducer,
+    auth: authSlice,
   },
 
   middleware: getDefaultMiddleware => [
@@ -28,3 +34,4 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch);
+export const persistor = persistStore(store);

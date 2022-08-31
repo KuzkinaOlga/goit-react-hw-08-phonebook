@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// import PropTypes from 'prop-types';
-import { searchContact } from 'redux/phonebookSlice';
+import { searchContact } from 'redux/phonebook/phonebookSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -16,8 +15,4 @@ const Filter = () => {
   );
 };
 
-// Filter.propTypes = {
-//   value: PropTypes.string,
-//   onChange: PropTypes.func.isRequired,
-// };
 export default Filter;

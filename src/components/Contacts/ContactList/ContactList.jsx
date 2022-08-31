@@ -1,11 +1,11 @@
 // import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useFetchContactsQuery } from 'redux/contactApi';
-import { getFilter } from 'redux/phonebookSlice';
+import { useFetchContactsQuery } from 'redux/phonebook/contactApi';
+import { getFilter } from 'redux/phonebook/phonebookSlice';
 import ContactListItem from './ContactListItem/ContactListItem';
 
 const ContactList = () => {
-  const { data: contacts = [] } = useFetchContactsQuery();
+  const { data: contacts } = useFetchContactsQuery();
   const filter = useSelector(getFilter);
 
   const visibleContacts = contacts.filter(({ name }) =>

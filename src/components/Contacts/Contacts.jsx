@@ -1,5 +1,5 @@
 import Loader from 'components/Loader/Loader';
-import { useFetchContactsQuery } from 'redux/contactApi';
+import { useFetchContactsQuery } from 'redux/phonebook/contactApi';
 import ContactList from './ContactList/ContactList';
 
 const Contacts = () => {
