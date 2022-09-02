@@ -4,8 +4,8 @@ import authApi from '../redux/auth/authApi';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('testYser@gmail.com');
-  const [password, setPassword] = useState('12345678');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
