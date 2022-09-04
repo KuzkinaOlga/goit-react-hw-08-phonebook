@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import {
   persistStore,
-  // persistReducer,
+  persistReducer,
   FLUSH,
   PAUSE,
   PERSIST,
@@ -11,16 +11,25 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import authSlice from './auth/authSlice';
-// import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 import { contactApi } from './phonebook/contactApi';
 import { filterReducer } from './phonebook/phonebookSlice';
 // import persistReducer from 'redux-persist/es/persistReducer';
 
+const userPersist = {
+  key: 'user',
+  storage,
+  whitelist: ['token'],
+};
+
 export const store = configureStore({
   reducer: {
-    [contactApi.reducerPath]: contactApi.reducer,
+    auth: persistReducer(userPersist, authSlice),
     filter: filterReducer,
-    auth: authSlice,
+    [contactApi.reducerPath]: contactApi.reducer,
+    // [contactApi.reducerPath]: contactApi.reducer,
+    // filter: filterReducer,
+    // auth: authSlice,
   },
 
   middleware: getDefaultMiddleware => [

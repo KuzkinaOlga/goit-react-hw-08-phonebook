@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { Container } from '../Container/Container';
 import AppBar from '../AppBar/AppBar';
 import HomePage from '../../pages/HomePage';
@@ -6,7 +6,7 @@ import RegisterPage from '../../pages/RegisterPage';
 import LoginPage from '../../pages/LoginPage';
 import PhonebookPage from 'pages/PhonebookPage';
 import PublicRoute from 'components/routes/PublicRoute';
-import PrivateRoute from 'components/routes/PrivateRoute';
+// import PrivateRoute from 'components/routes/PrivateRoute';
 import { useDispatch } from 'react-redux';
 // import authSelectors from '../../redux/auth/authSelectors';
 import { useEffect } from 'react';
@@ -36,16 +36,16 @@ const App = () => {
 
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          {/* <Route path="/phonebook" element={<PhonebookPage />} /> */}
-          <Route
+          <Route path="/phonebook" element={<PhonebookPage />} />
+          {/* <Route
             path="/phonebook"
             element={
-              <PrivateRoute redirectTo="/login">
+              <PrivateRoute>
                 <PhonebookPage />
               </PrivateRoute>
             }
-          />
-          {/* <Route path="/*" element={<Navigate to="/" />} /> */}
+          /> */}
+          <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </Container>
     </>
