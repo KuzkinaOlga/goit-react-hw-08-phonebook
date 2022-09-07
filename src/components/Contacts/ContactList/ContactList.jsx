@@ -1,7 +1,7 @@
 // import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useFetchContactsQuery } from 'redux/phonebook/contactApi';
-import { getFilter } from 'redux/phonebook/phonebookSlice';
+import { getFilter } from 'redux/phonebook/phonebookSelectors';
 import ContactListItem from './ContactListItem/ContactListItem';
 
 const ContactList = () => {
@@ -26,13 +26,4 @@ const ContactList = () => {
   );
 };
 export default ContactList;
-// ContactList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     })
-//   ),
-//   delite: PropTypes.func.isRequired,
-// };
+

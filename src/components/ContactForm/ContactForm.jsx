@@ -1,8 +1,6 @@
+import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-// import PropTypes from 'prop-types';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { addContact } from 'redux/phonebookSlice';
 
 import {
   useCreateContactMutation,
@@ -16,7 +14,7 @@ const ContactForm = () => {
   const [phone, setPhone] = useState('');
 
   const handleChange = event => {
-    const { name, value } = event.currentTarget;
+    const { name, value } = event.target;
     switch (name) {
       case 'name':
         setName(value);
@@ -52,6 +50,19 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-name">Name</InputLabel>
+        <OutlinedInput
+          id="outlined-adornment-name"
+          // type={values.showPassword ? 'text' : 'password'}
+          value={name}
+          onChange={handleChange}
+          label="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+        />
+      </FormControl> */}
       <label>name</label>
       <input
         type="text"
@@ -76,20 +87,17 @@ const ContactForm = () => {
         />
       </label>
       <br />
-      <button type="submit" disabled={isLoading}>
+
+      <Button
+        sx={{ m: 1 }}
+        variant="contained"
+        type="submit"
+        disabled={isLoading}
+      >
         add contact
-      </button>
+      </Button>
     </form>
   );
 };
-// ContactForm.protoTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     })
-//   ),
-// };
 
 export default ContactForm;
