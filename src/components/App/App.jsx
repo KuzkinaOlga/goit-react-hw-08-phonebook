@@ -5,8 +5,8 @@ import HomePage from '../../pages/HomePage';
 import RegisterPage from '../../pages/RegisterPage';
 import LoginPage from '../../pages/LoginPage';
 import PhonebookPage from 'pages/PhonebookPage';
-// import PublicRoute from 'components/routes/PublicRoute';
-// import PrivateRoute from 'components/routes/PrivateRoute';
+import PublicRoute from 'components/routes/PublicRoute';
+import PrivateRoute from 'components/routes/PrivateRoute';
 import { useDispatch } from 'react-redux';
 // import authSelectors from '../../redux/auth/authSelectors';
 import { useEffect } from 'react';
@@ -25,19 +25,27 @@ const App = () => {
         <AppBar />
 
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
+            }
+          />
+
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/phonebook" element={<PhonebookPage />} />
+          {/* <Route path="/phonebook" element={<PhonebookPage />} /> */}
 
-          {/* <Route
+          <Route
             path="/phonebook"
             element={
               <PrivateRoute>
                 <PhonebookPage />
               </PrivateRoute>
             }
-          /> */}
+          />
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </Container>
